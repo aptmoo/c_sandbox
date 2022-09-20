@@ -42,14 +42,12 @@
 *.idb
 *.pdb
 
-<<<<<<< HEAD
 #output files
 bin/engine.e
-=======
-# Output files
-bin/engine.e
 bin/data/test.png
->>>>>>> d49309e269e0204f56244f5cdfabf48280325b5b
+
+.vscode/
+.sconsign.dblite
 
 # Kernel Module Compile Results
 *.mod*
