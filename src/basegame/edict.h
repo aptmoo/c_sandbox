@@ -69,4 +69,4 @@ void edict_tick(edict_entry_t* head, float delta);
 void edict_render(edict_entry_t* head);
 
 void edict_push_back(edict_entry_t* head, edict_prefab_t data);
-void edict_close(edict_entry_t* head);
+void edict_clear(edict_entry_t* head);

@@ -90,7 +90,7 @@ void edict_push_back(edict_entry_t *head, edict_prefab_t data)
     current->next->next = NULL;
 }
 
-void edict_close(edict_entry_t *head)
+void edict_clear(edict_entry_t *head)
 {
     printf("Edict cleared.\n");
     edict_entry_t* current = head;
