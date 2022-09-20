@@ -2,16 +2,7 @@
 #include "pch.h"
 #include "entity.h"
 
-/*
-    void (*init)(void* self, float delta);
-    void (*awake)(void* self, float delta);
-    void (*sleep)(void* self, float delta);
-
-    void (*tick)(void* self, float delta);
-    void (*preRender)(void* self, float delta);
-    void (*render)(void* self, float delta);
-    void (*postRender)(void* self, float delta);
-*/
+// This is going to be fun to debug later on
 
 // Universal func defs
 #define FUNC_TABLE_SIZE 7
@@ -38,9 +29,10 @@
 
 #define PREFAB_TEST 0
 
+// An entry to the func table.
 typedef struct edict_func_table_entry_t
 {
-    int id;
+    int id; // Unneccesary?
     void (*action)(edict_entry_t* self, float delta);
 }edict_func_table_entry_t;
 
