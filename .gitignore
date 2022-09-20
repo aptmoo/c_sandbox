@@ -42,6 +42,10 @@
 *.idb
 *.pdb
 
+# Output files
+bin/engine.e
+bin/data/test.png
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
