@@ -17,6 +17,7 @@ edict_entry_t *createEdictHead()
     temp->preRender = genericEntityNullfunc;
     temp->render = genericEntityNullfunc;
     temp->postRender = genericEntityNullfunc;
+    temp->destruct = genericEntityNullfunc;
 
     return temp;
 }
@@ -91,9 +92,20 @@ void edict_push_back(edict_entry_t *head, edict_prefab_t data)
     current->next->preRender = func_table[data.preRender].action;
     current->next->render = func_table[data.render].action;
     current->next->postRender = func_table[data.postRender].action;
+    current->next->destruct = func_table[data.destruct].action;
 
     // Ensure that the newly created node has an empty next slot.
     current->next->next = NULL;
+}
+
+void edict_destruct(edict_entry_t* head)
+{
+    edict_entry_t* current = head;
+    while(current!= NULL)
+    {
+        current->destruct(current, 0);
+        current = current->next;
+    }
 }
 
 void edict_clear(edict_entry_t *head)

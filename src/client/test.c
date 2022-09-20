@@ -16,6 +16,7 @@ int main()
             edict_render(head);
         EndDrawing();
     }
+    edict_destruct(head);
     edict_clear(head);
 
     CloseWindow();

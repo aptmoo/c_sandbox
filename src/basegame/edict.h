@@ -17,15 +17,8 @@
 #define TEST_ENT_PRERENDER 6
 #define TEST_ENT_RENDER 7
 #define TEST_ENT_POSTRENDER 8
+#define TEST_ENT_DESTRUCT 9
 
-// Camera ent defs
-#define CAM_ENT_INIT 9
-#define CAM_ENT_AWAKE 1
-#define CAM_ENT_SLEEP 1
-#define CAM_ENT_TICK 10
-#define CAM_ENT_PRERENDER 11
-#define CAM_ENT_RENDER 12
-#define CAM_ENT_POSTRENDER 13
 
 #define PREFAB_TEST 0
 
@@ -47,11 +40,12 @@ static edict_func_table_entry_t func_table[] =
 {TEST_ENT_PRERENDER, testEntPreRender},
 {TEST_ENT_RENDER, testEntRender},
 {TEST_ENT_POSTRENDER, testEntPostRender},
+{TEST_ENT_DESTRUCT, testEntDestruct}
 };
 
 static edict_prefab_t prefab_table[] = 
 {
-{GENERIC_ENT_CONSTRUCT, TEST_ENT_INIT, TEST_ENT_AWAKE, TEST_ENT_SLEEP, TEST_ENT_TICK, TEST_ENT_PRERENDER, TEST_ENT_RENDER, TEST_ENT_POSTRENDER} // 0
+{GENERIC_ENT_CONSTRUCT, TEST_ENT_INIT, TEST_ENT_AWAKE, TEST_ENT_SLEEP, TEST_ENT_TICK, TEST_ENT_PRERENDER, TEST_ENT_RENDER, TEST_ENT_POSTRENDER, TEST_ENT_DESTRUCT} // 0
 };
 
 edict_entry_t* createEdictHead();
@@ -61,4 +55,5 @@ void edict_tick(edict_entry_t* head, float delta);
 void edict_render(edict_entry_t* head);
 
 void edict_push_back(edict_entry_t* head, edict_prefab_t data);
+void edict_destruct(edict_entry_t* head);
 void edict_clear(edict_entry_t* head);

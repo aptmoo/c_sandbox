@@ -43,3 +43,9 @@ void testEntPostRender(edict_entry_t* self, float delta)
 {
     // printf("PostRendered!\n");
 }
+
+void testEntDestruct(edict_entry_t* self, float delta)
+{
+    printf("Unloaded texture\n");
+    UnloadTexture(self->tex);
+}

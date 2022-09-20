@@ -21,6 +21,8 @@ typedef struct edict_entry_t
     void (*render)(void* self, float delta);
     void (*postRender)(void* self, float delta);
 
+    void (*destruct)(void* self, float delta);
+
     struct edict_entry_t* next;
 }edict_entry_t;
 
@@ -35,6 +37,7 @@ typedef struct edict_prefab_t
     int preRender;
     int render;
     int postRender;
+    int destruct;
 }edict_prefab_t;
 
 //Generic int constructs.
@@ -49,3 +52,4 @@ void testEntTick(edict_entry_t* self, float delta);
 void testEntPreRender(edict_entry_t* self, float delta);
 void testEntRender(edict_entry_t* self, float delta);
 void testEntPostRender(edict_entry_t* self, float delta);
+void testEntDestruct(edict_entry_t* self, float delta);
