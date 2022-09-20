@@ -20,6 +20,7 @@ void testEntInit(edict_entry_t* self, float delta)
 void testEntAwake(edict_entry_t* self, float delta)
 {
     printf("Awoken!\n");
+    self->scale.x = 0.3f;
 }
 void testEntSleep(edict_entry_t* self, float delta)
 {
@@ -27,6 +28,7 @@ void testEntSleep(edict_entry_t* self, float delta)
 }
 void testEntTick(edict_entry_t* self, float delta)
 {
+    self->scale.x += GetMouseWheelMove() / 10;
     self->position.x = GetMousePosition().x;
     self->position.y = GetMousePosition().y;
 
@@ -37,7 +39,7 @@ void testEntPreRender(edict_entry_t* self, float delta)
 }
 void testEntRender(edict_entry_t* self, float delta)
 {
-    DrawTextureEx(self->tex, (Vector2){self->position.x, self->position.y}, 0, 0.25f, WHITE);
+    DrawTextureEx(self->tex, (Vector2){self->position.x, self->position.y}, 0, self->scale.x, WHITE);
 }
 void testEntPostRender(edict_entry_t* self, float delta)
 {
