@@ -21,7 +21,7 @@ edict_entry_t *createEdictHead()
     return temp;
 }
 
-// Iterate over edict
+// Init all of the entries.
 void edict_init(edict_entry_t *head)
 {
     edict_entry_t *current;
@@ -32,6 +32,7 @@ void edict_init(edict_entry_t *head)
     }
 }
 
+// Tick all the edict entries.
 void edict_tick(edict_entry_t *head, float delta)
 {
     edict_entry_t *current = head;
@@ -42,6 +43,7 @@ void edict_tick(edict_entry_t *head, float delta)
     }
 }
 
+// Call the render functions in all edict entries.
 void edict_render(edict_entry_t *head)
 {
     edict_entry_t *current = head;
@@ -64,13 +66,16 @@ void edict_render(edict_entry_t *head)
     }
 }
 
+// Ad a node to the end of the edict.
 void edict_push_back(edict_entry_t *head, edict_prefab_t data)
 {
+    // The same iteration thing as before.
     edict_entry_t *current = head;
     while (current->next != NULL)
     {
         current = current->next;
     }
+    // Allocate memory for the new node.
     current->next = (edict_entry_t *)malloc(sizeof(edict_entry_t));
 
     // Construct and init functions
@@ -87,6 +92,7 @@ void edict_push_back(edict_entry_t *head, edict_prefab_t data)
     current->next->render = func_table[data.render].action;
     current->next->postRender = func_table[data.postRender].action;
 
+    // Ensure that the newly created node has an empty next slot.
     current->next->next = NULL;
 }
 
