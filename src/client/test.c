@@ -1,4 +1,5 @@
 #include "basegame/edict.h"
+#include "assert.h"
 
 int main()
 {
@@ -6,7 +7,8 @@ int main()
     SetTargetFPS(60);
     InitWindow(1280, 720, "thing");
 
-    edict_push_back(head, prefab_table[PREFAB_TEST]);
+    edict_push_back(head, EMPTY_ENT);
+    edict_push_back(head, FREECAM_ENT);
 
     while(!WindowShouldClose())
     {

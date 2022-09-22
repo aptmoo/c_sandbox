@@ -6,18 +6,22 @@ edict_entry_t *createEdictHead()
     // Allocate entity memory
     temp = (edict_entry_t *)malloc(sizeof(edict_entry_t));
 
-    temp->construct = genericEntityConstruct;
+    // Constructor
+    temp->construct = functable[EMPTY_ENT].construct;
     temp->construct(temp, 0);
 
-    // There is no such thing as a functional zero entity
-    temp->init = testEntInit;
-    temp->awake = genericEntityNullfunc;
-    temp->sleep = genericEntityNullfunc;
-    temp->tick = genericEntityNullfunc;
-    temp->preRender = genericEntityNullfunc;
-    temp->render = genericEntityNullfunc;
-    temp->postRender = genericEntityNullfunc;
-    temp->destruct = genericEntityNullfunc;
+    // Destructor
+    temp->destruct = functable[EMPTY_ENT].destruct;
+
+    // Funcs
+    temp->init = functable[EMPTY_ENT].init;
+    temp->init(temp, 0);
+    temp->tick = functable[EMPTY_ENT].tick;
+    temp->preRender = functable[EMPTY_ENT].preRender;
+    temp->render = functable[EMPTY_ENT].render;
+    temp->postRender = functable[EMPTY_ENT].postRender;
+
+    temp->next = NULL;
 
     return temp;
 }
@@ -67,8 +71,8 @@ void edict_render(edict_entry_t *head)
     }
 }
 
-// Ad a node to the end of the edict.
-void edict_push_back(edict_entry_t *head, edict_prefab_t data)
+// Add a node to the end of the edict.
+void edict_push_back(edict_entry_t *head, int type)
 {
     // The same iteration thing as before.
     edict_entry_t *current = head;
@@ -76,25 +80,24 @@ void edict_push_back(edict_entry_t *head, edict_prefab_t data)
     {
         current = current->next;
     }
+
     // Allocate memory for the new node.
     current->next = (edict_entry_t *)malloc(sizeof(edict_entry_t));
 
-    // Construct and init functions
-    current->next->construct = func_table[data.construct].action;
+    // Constructor
+    current->next->construct = functable[type].construct;
     current->next->construct(current->next, 0);
-    current->next->init = func_table[data.init].action;
+
+    // Destructor
+    current->next->destruct = functable[type].destruct;
+
+    // Funcs
+    current->next->init = functable[type].init;
     current->next->init(current->next, 0);
-
-    // All of the other functions.
-    current->next->awake = func_table[data.awake].action;
-    current->next->sleep = func_table[data.sleep].action;
-    current->next->tick = func_table[data.tick].action;
-    current->next->preRender = func_table[data.preRender].action;
-    current->next->render = func_table[data.render].action;
-    current->next->postRender = func_table[data.postRender].action;
-    current->next->destruct = func_table[data.destruct].action;
-
-    // Ensure that the newly created node has an empty next slot.
+    current->next->tick = functable[type].tick;
+    current->next->preRender = functable[type].preRender;
+    current->next->render = functable[type].render;
+    current->next->postRender = functable[type].postRender;
     current->next->next = NULL;
 }
 
