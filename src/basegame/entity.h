@@ -5,7 +5,9 @@ typedef struct edict_entry_t
 {
     // Common stuff
     Model mdl;
-    ModelAnimation anims;
+    ModelAnimation *anims;
+    int animCount, currentAnimFrame;
+    Shader shader;
 
     Vector3 position;
     Vector3 scale;

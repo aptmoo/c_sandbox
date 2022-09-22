@@ -1,5 +1,4 @@
 #include "basegame/edict.h"
-#include "assert.h"
 
 int main()
 {
