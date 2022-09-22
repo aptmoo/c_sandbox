@@ -2,6 +2,9 @@
 
 int main()
 {
+    const double dt = 0.03;
+    double accumulator = 0.0f;
+
     edict_entry_t* head = createEdictHead();
     SetTargetFPS(60);
     InitWindow(1280, 720, "thing");
@@ -13,6 +16,13 @@ int main()
     while(!WindowShouldClose())
     {
         edict_tick(head, 10);
+        accumulator += GetFrameTime();
+        while(accumulator >= dt)
+        {
+            edict_fixedTick(head, dt);
+            accumulator -= dt;
+        }
+
         BeginDrawing();
             ClearBackground(GRAY);
             edict_render(head);

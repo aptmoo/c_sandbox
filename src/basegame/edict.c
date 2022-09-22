@@ -17,6 +17,7 @@ edict_entry_t *createEdictHead()
     temp->init = functable[EMPTY_ENT].init;
     temp->init(temp, 0);
     temp->tick = functable[EMPTY_ENT].tick;
+    temp->fixedTick = functable[EMPTY_ENT].fixedTick;
     temp->preRender = functable[EMPTY_ENT].preRender;
     temp->render = functable[EMPTY_ENT].render;
     temp->postRender = functable[EMPTY_ENT].postRender;
@@ -44,6 +45,15 @@ void edict_tick(edict_entry_t *head, float delta)
     while (current != NULL)
     {
         current->tick(current, delta);
+        current = current->next;
+    }
+}
+void edict_fixedTick(edict_entry_t* head, float delta)
+{
+    edict_entry_t *current = head;
+    while (current != NULL)
+    {
+        current->fixedTick(current, delta);
         current = current->next;
     }
 }
@@ -95,6 +105,7 @@ void edict_push_back(edict_entry_t *head, int type)
     current->next->init = functable[type].init;
     current->next->init(current->next, 0);
     current->next->tick = functable[type].tick;
+    current->next->fixedTick = functable[type].fixedTick;
     current->next->preRender = functable[type].preRender;
     current->next->render = functable[type].render;
     current->next->postRender = functable[type].postRender;

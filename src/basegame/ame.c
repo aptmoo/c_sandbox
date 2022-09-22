@@ -23,7 +23,9 @@ void AmeTick(edict_entry_t* self, float delta)
 {
     self->rotation = QuaternionFromEuler(-90*DEG2RAD, 0, 0);
     self->mdl.transform = CalculateMatrixFromVars(self->position, self->scale, self->rotation);
-
+}
+void AmeFixedTick(edict_entry_t* self, float delta)
+{
     if(IsKeyDown(KEY_SPACE))
     {
         self->currentAnimFrame++;

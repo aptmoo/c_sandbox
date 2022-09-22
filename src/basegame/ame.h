@@ -6,6 +6,7 @@ void AmeConstruct(edict_entry_t* self, float delta);
 void AmeDestruct(edict_entry_t* self, float delta);
 void AmeInit(edict_entry_t* self, float delta);
 void AmeTick(edict_entry_t* self, float delta);
+void AmeFixedTick(edict_entry_t* self, float delta);
 void AmeRender(edict_entry_t* self, float delta);
 
 // void GenericEntityConstruct(edict_entry_t* self, float delta);
