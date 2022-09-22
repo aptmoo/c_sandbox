@@ -9,6 +9,7 @@ int main()
 
     edict_push_back(head, EMPTY_ENT);
     edict_push_back(head, FREECAM_ENT);
+    edict_push_back(head, AME_ENT);
 
     while(!WindowShouldClose())
     {
@@ -16,6 +17,10 @@ int main()
         BeginDrawing();
             ClearBackground(GRAY);
             edict_render(head);
+
+            #ifndef NDEBUG
+                DrawFPS(10, 10);
+            #endif
         EndDrawing();
     }
     edict_destruct(head);

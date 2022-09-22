@@ -2,15 +2,11 @@
 #include "pch.h"
 #include "entity.h"
 
-static Camera sceneCam;
-
-void FreeCamEntityConstruct(edict_entry_t* self, float delta);
-void FreeCamEntityDestruct(edict_entry_t* self, float delta);
-void FreeCamEntityInit(edict_entry_t* self, float delta);
-void FreeCamEntityTick(edict_entry_t* self, float delta);
-void FreeCamEntityPreRender(edict_entry_t* self, float delta);
-void FreeCamEntityRender(edict_entry_t* self, float delta);
-void FreeCamEntityPostRender(edict_entry_t* self, float delta);
+void AmeConstruct(edict_entry_t* self, float delta);
+void AmeDestruct(edict_entry_t* self, float delta);
+void AmeInit(edict_entry_t* self, float delta);
+void AmeTick(edict_entry_t* self, float delta);
+void AmeRender(edict_entry_t* self, float delta);
 
 // void GenericEntityConstruct(edict_entry_t* self, float delta);
 // void EmptyEntityDestruct(edict_entry_t* self, float delta);

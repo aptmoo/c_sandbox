@@ -3,6 +3,13 @@
 
 typedef struct edict_entry_t
 {
+    // Common stuff
+    Model mdl;
+    ModelAnimation anims;
+
+    Vector3 position;
+    Vector3 scale;
+    Quaternion rotation;
 
     // Construction and destruction functions.
     void (*construct)(void* self, float delta);

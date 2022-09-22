@@ -2,9 +2,11 @@
 #include "pch.h"
 #include "entity.h"
 #include "camera.h"
+#include "ame.h"
 
 #define EMPTY_ENT 0
 #define FREECAM_ENT 1
+#define AME_ENT 2
 
 typedef struct functable_entry_t
 {
@@ -21,7 +23,8 @@ typedef struct functable_entry_t
 static functable_entry_t functable[] =
 {
 {GenericEntityConstruct, EmptyEntityDestruct, EmptyEntityInit, EmptyEntityTick, EmptyEntityPreRender, EmptyEntityRender, EmptyEntityPostRender},  // EMPTY_ENT
-{FreeCamEntityConstruct, FreeCamEntityDestruct, FreeCamEntityInit, FreeCamEntityTick, FreeCamEntityPreRender, FreeCamEntityRender, FreeCamEntityPostRender} // FREECAM_ENT
+{FreeCamEntityConstruct, FreeCamEntityDestruct, FreeCamEntityInit, FreeCamEntityTick, FreeCamEntityPreRender, FreeCamEntityRender, FreeCamEntityPostRender}, // FREECAM_ENT
+{AmeConstruct, AmeDestruct, AmeInit, AmeTick, EmptyEntityPreRender, AmeRender, EmptyEntityPostRender}   // Ame
 };
 
 edict_entry_t* createEdictHead();
