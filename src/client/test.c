@@ -9,9 +9,11 @@ int main()
     SetTargetFPS(60);
     InitWindow(1280, 720, "thing");
 
-    edict_push_back(head, EMPTY_ENT);
-    edict_push_back(head, FREECAM_ENT);
-    edict_push_back(head, AME_ENT);
+    Shader lit = LoadShader("data/shaders/base.vs", "data/shaders/lit.fs");
+
+    edict_push_back(head, FREECAM_ENT, Vector3Zero(), Vector3One(), QuaternionIdentity(), lit);
+    edict_push_back(head, AME_ENT, Vector3Zero(), Vector3One(), QuaternionIdentity(), lit);
+    edict_push_back(head, ENVLIHGT_ENT, (Vector3){0.0f, 10.0f, 0.0f}, Vector3One(), QuaternionIdentity(), lit);
 
     while(!WindowShouldClose())
     {

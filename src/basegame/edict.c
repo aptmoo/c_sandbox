@@ -82,7 +82,7 @@ void edict_render(edict_entry_t *head)
 }
 
 // Add a node to the end of the edict.
-void edict_push_back(edict_entry_t *head, int type)
+void edict_push_back(edict_entry_t *head, int type, Vector3 position, Vector3 scale, Quaternion rotation, Shader shader)
 {
     // The same iteration thing as before.
     edict_entry_t *current = head;
@@ -93,6 +93,12 @@ void edict_push_back(edict_entry_t *head, int type)
 
     // Allocate memory for the new node.
     current->next = (edict_entry_t *)malloc(sizeof(edict_entry_t));
+
+    current->next->position = position;
+    current->next->scale = scale;
+    current->next->rotation = rotation;
+
+    current->next->shader = shader;
 
     // Constructor
     current->next->construct = functable[type].construct;

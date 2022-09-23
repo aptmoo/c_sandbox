@@ -10,6 +10,8 @@ void FreeCamEntityConstruct(edict_entry_t* self, float delta)
     self->position = sceneCam.position;
     self->scale = Vector3One();
     self->rotation = QuaternionIdentity();
+
+    self->shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(self->shader, "viewPos");
 }
 void FreeCamEntityDestruct(edict_entry_t* self, float delta){} // Nothing.
 void FreeCamEntityInit(edict_entry_t* self, float delta)
@@ -19,6 +21,8 @@ void FreeCamEntityInit(edict_entry_t* self, float delta)
 void FreeCamEntityTick(edict_entry_t* self, float delta)
 {
     UpdateCamera(&sceneCam);
+    float cameraPos[3] = { sceneCam.position.x, sceneCam.position.y, sceneCam.position.z };
+    SetShaderValue(self->shader, self->shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
 }
 void FreeCamEntityPreRender(edict_entry_t* self, float delta)
 {

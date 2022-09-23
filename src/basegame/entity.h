@@ -1,4 +1,5 @@
 #pragma once
+#include "rlights.h"
 #include "pch.h"
 
 typedef struct edict_entry_t
@@ -8,6 +9,11 @@ typedef struct edict_entry_t
     ModelAnimation *anims;
     int animCount, currentAnimFrame;
     Shader shader;
+
+    Light light;
+    Vector3 target;
+
+    Color color;
 
     // Texture for billboards and skyboxes
     Texture2D tex;
